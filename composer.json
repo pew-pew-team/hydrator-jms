@@ -1,0 +1,56 @@
+{
+    "name": "pew-pew/hydrator-jms",
+    "license": "MIT",
+    "description": "JMS serializer hydrator bridge",
+    "type": "library",
+    "require": {
+        "php": "^8.3",
+        "doctrine/instantiator": "^1.5|^2.0",
+        "pew-pew/hydrator": "^0.1",
+        "jms/serializer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PewPew\\Hydrator\\JMS\\": "src"
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.49",
+        "phpunit/phpunit": "^10.5",
+        "symfony/var-dumper": "^5.4|^6.0|^7.0",
+        "vimeo/psalm": "^5.21"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PewPew\\Hydrator\\JMS\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev",
+            "dev-main": "1.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "platform-check": true,
+        "bin-compat": "full",
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
+    "scripts": {
+        "test": ["@test:unit", "@test:functional"],
+        "test:unit": "phpunit --testdox",
+        "test:functional": "phpunit --testdox --testsuite=functional",
+        "linter": "@linter:check",
+        "linter:check": "psalm --no-cache",
+        "linter:fix": "psalm --no-cache --alter",
+        "phpcs": "@phpcs:check",
+        "phpcs:check": "php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes --dry-run --verbose --diff",
+        "phpcs:fix": "php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes --verbose --diff"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
