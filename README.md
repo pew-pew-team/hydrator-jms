@@ -34,13 +34,42 @@ More detailed installation [instructions are here](https://getcomposer.org/doc/0
 
 ## Usage
 
+Simple hydrator creation:
+
 ```php
 $jms = PewPew\Hydrator\JMS\Builder::create();
+```
 
-$hydrator = $jms->createHydrator();
-var_dump($hydrator->hydrate('User', ['name' => 'Vasya'])); // object(User) { name: "Vasya" }
+### Hydrator
 
+```php
+$hydrator = PewPew\Hydrator\JMS\Builder::create()
+    ->createHydrator();
 
-$extractor = $jms->createExtractor();
-var_dump($extractor->extract(new User('Vasya'))); // array(1) { name: "Vasya" }
+$dto = $hydrator->hydrate(ExampleDTO::class, [
+    'id' => 42,
+    'name' => 'Vasya',
+]);
+
+// object(ExampleDTO) {
+//   id: int(42),
+//   name: string("Vasya"),
+// }
+```
+
+### Extractor
+
+```php
+$extractor = PewPew\Hydrator\JMS\Builder::create()
+    ->createExtractor();
+
+$data = $extractor->extract(new ExampleDTO(
+    id: 42,
+    name: 'Vasya',
+));
+
+// array(2) [
+//   id => int(42),
+//   name => string("Vasya"),
+// ]
 ```
