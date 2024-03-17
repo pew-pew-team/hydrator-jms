@@ -40,7 +40,7 @@ final readonly class ObjectConstructor
             $instance = $this->instantiator->instantiate($metadata->name);
         } catch (ExceptionInterface $e) {
             /** @psalm-suppress RedundantCast : Error code may be non-int */
-            throw new HydratorException($e->getMessage(), (int)$e->getCode(), $e);
+            throw new HydratorException($e->getMessage(), (int) $e->getCode(), $e);
         }
 
         $this->validator->validateOrFail($metadata, $data, $context);
